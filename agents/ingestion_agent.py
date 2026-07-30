@@ -60,5 +60,7 @@ def assess_schema(file_path: str, table_name: str) -> SchemaAssessment:
     )
 
     return SchemaAssessment.model_validate_json(resp.message.content)
-result = assess_schema("data/raw/olist_customers_test.csv", "customers")
-print(result)
+
+if __name__ == "__main__":
+    result = assess_schema("data/raw/olist_customers_test.csv", "customers")
+    print(result)

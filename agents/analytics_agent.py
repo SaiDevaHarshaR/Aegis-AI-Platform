@@ -44,8 +44,8 @@ def ask_analytics_agent(question: str):
     generation = SQLGeneration.model_validate_json(resp['message']['content'])
     corrected_query = generation.sql_query.replace("FROM monthly_revenue", "FROM aegis.gold.monthly_revenue")
     corrected_query = corrected_query.replace("from monthly_revenue", "FROM aegis.gold.monthly_revenue")
-    if not is_safe_select_query(generation.sql_query):
-        return {"error": "Unsafe query blocked", "attempted_query": generation.sql_query}
+    if not is_safe_select_query(corrected_query):
+        return {"error": "Unsafe query blocked", "attempted_query": corrected_query}
 
     connection = databricks_sql.connect(
         server_hostname=os.getenv("DATABRICKS_SERVER_HOSTNAME"),
@@ -53,17 +53,18 @@ def ask_analytics_agent(question: str):
         access_token=os.getenv("DATABRICKS_TOKEN")
     )
     cursor = connection.cursor()
-    print("Generated SQL:", generation.sql_query)
-    cursor.execute(generation.sql_query)
+    print("Generated SQL:", corrected_query)
+    cursor.execute(corrected_query)
     result = cursor.fetchall()
     cursor.close()
     connection.close()
 
     return {
-        "sql_query": generation.sql_query,
-        "explanation": generation.explanation,
-        "result": result
-    }
+    "sql_query": corrected_query,
+    "explanation": generation.explanation,
+    "result": result
+}
 
-result = ask_analytics_agent("What was our total revenue in 2017?")
-print(result)
+if __name__ == "__main__":
+    result = ask_analytics_agent("What was our total revenue in 2017?")
+    print(result)

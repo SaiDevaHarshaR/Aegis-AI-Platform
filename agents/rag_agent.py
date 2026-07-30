@@ -35,21 +35,15 @@ Question: {question}
     return resp["message"]["content"]
 
 # Load and chunk the real document FIRST
-with open("docs/architecture.md", "r", encoding="utf-8") as f:
-    text = f.read()
-
-documents = chunk_text(text)
-print(f"Number of chunks: {len(documents)}")
-
-# Debug: find which chunk contains our target sentence
-for i, c in enumerate(documents):
-    if "Layer definitions" in c:
-        print(f"Found in chunk {i}:")
-        print(c)
-
-# Build index from the REAL chunks (not toy data)
-index = build_index(documents)
-
-# Now ask questions
-print(answer_question("what does the Bronze layer do?", index, documents, k=4))
-print(answer_question("what does the Silver layer do?", index, documents, k=4))
+if __name__ == "__main__":
+    with open("docs/architecture.md", "r", encoding="utf-8") as f:
+        text = f.read()
+    documents = chunk_text(text)
+    print(f"Number of chunks: {len(documents)}")
+    for i, c in enumerate(documents):
+        if "Layer definitions" in c:
+            print(f"Found in chunk {i}:")
+            print(c)
+    index = build_index(documents)
+    print(answer_question("what does the Bronze layer do?", index, documents, k=4))
+    print(answer_question("what does the Silver layer do?", index, documents, k=4))
