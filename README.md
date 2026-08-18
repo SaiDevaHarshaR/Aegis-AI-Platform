@@ -57,7 +57,7 @@ Data Sources → Ingestion Agent → Bronze (Delta)
  
 ## Tech stack
  
-`Python` · `Databricks` (Unity Catalog, Delta Lake, SQL Warehouses, Jobs API) · `PySpark` · `Ollama` (local CPU inference) · `FAISS` · `Pydantic` · `FastAPI` · `Streamlit` · `Docker` · `Kubernetes` · `Terraform` · `GitHub Actions` · `pandas`
+`Python` · `Databricks` (Unity Catalog, Delta Lake, SQL Warehouses, Jobs API) · `PySpark` · `Ollama` (local CPU inference) · `FAISS` · `Pydantic` · `FastAPI` · `Streamlit` ·  `pandas`
  
 ---
  
