@@ -8,7 +8,6 @@ databricks-sdk
 databricks-sql-connector
 python-dotenv
 faiss-cpu
-faiss
 chromadb
 pandas
 ollama
