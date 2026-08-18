@@ -36,14 +36,13 @@ Data Sources → Ingestion Agent → Bronze (Delta)
                                 → Silver (Delta, validated)
                                 → Gold (Delta, analytics-ready)
                                         ↓
-        ┌───────────────┬───────────────┼───────────────┐
+        ┌───────────────┬───────────────┼────────────────────────┐
    RAG Agent       Analytics Agent   Monitoring Agent   (Unity Catalog governs all)
-   (FAISS)         (SQL Warehouse)   (Jobs API)
-        └───────────────┴───────────────┴───────────────┘
+   (FAISS)         (SQL Warehouse)   (Jobs API)                  
+        └───────────────┴───────────────┴────────────────────────┘
                         FastAPI (agent orchestration layer)
                         Streamlit (human review UI)
-                        Docker / Kubernetes (deployment)
-                        Terraform (infra as code) + GitHub Actions (CI/CD)
+                        
 ```
  
 **Data layer:** Databricks Free Edition, Unity Catalog, Delta Lake, Bronze/Silver/Gold medallion architecture (Olist Brazilian e-commerce dataset — 9 source tables).
