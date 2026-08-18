@@ -143,9 +143,21 @@ Full write-ups: [`docs/architecture.md`](docs/architecture.md), "Known Limitatio
 ---
  
 ## Demo
- 
-*(Add a short screen recording or GIF here showing a real question being asked through the Streamlit UI, and the agent's response.)*
- 
+
+**Knowledge Base (RAG) — grounded answer from the project's own architecture doc**
+![RAG demo](docs/screenshots/aegis-1.png)
+
+**Analytics Agent — natural language → SQL → real Databricks results**
+![Analytics demo](docs/screenshots/aegis-2.png)
+
+**Monitoring/RCA Agent — real job failure diagnosed via the Databricks Jobs API**
+![Monitoring demo](docs/screenshots/aegis-3.png)
+
+**Ingestion Agent — schema comparison, including a caught false positive**
+![Ingestion demo](docs/screenshots/aegis-4.png)
+> Note: this run shows the agent flagging a false anomaly on an unmodified file — 
+> a real, documented limitation (see [Known Limitations](docs/architecture.md)) 
+> that's exactly why every agent output requires human review before being applied.
 ---
  
 ## License
